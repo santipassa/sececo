@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contrato_con_viatico" language="groovy" pageWidth="595" pageHeight="842" columnWidth="495" leftMargin="60" rightMargin="40" topMargin="20" bottomMargin="20" uuid="e754974f-904b-4478-8e1c-7665cef02ed5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="contrId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="monedaPlural" class="java.lang.String"/>
+	<parameter name="monedaSimbolo" class="java.lang.String"/>
+	<parameter name="pathImagen" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT contratos.id,numeroExpediente,numeroResolucion0,pesosLetraViatico,FORMAT(pesosNumeroViatico,2) as pesosNumeroViatico,numeroResolucion1,areaPresupuestaria,DATE_FORMAT(fechaContrato,'%d/%m/%Y') AS fechaContrato,subArea,DATE_FORMAT(fechaResolucion,'%d/%m/%Y') AS fechaResolucion,tipoTarea,lugarTarea,DATE_FORMAT(fechaDesde,'%d/%m/%Y') AS fechaDesde,DATE_FORMAT(fechaHasta,'%d/%m/%Y') AS fechaHasta,pesosLetra,FORMAT(pesosNumero,2) as pesosNumero,personas.nombre,apellido,documento,direccion,tdocumentos.nombre AS tdni,tresoluciones.nombre as tRes FROM contratos INNER JOIN personas ON contratos.id_persona=personas.id INNER JOIN tdocumentos ON personas.id_tdocumentos=tdocumentos.id INNER JOIN tresoluciones ON tresoluciones.id=contratos.id_tresoluciones  WHERE contratos.id=$P{contrId};]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numeroExpediente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numeroResolucion0" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pesosLetraViatico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pesosNumeroViatico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numeroResolucion1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="areaPresupuestaria" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechaContrato" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="subArea" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechaResolucion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipoTarea" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lugarTarea" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechaDesde" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechaHasta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pesosLetra" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pesosNumero" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellido" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="documento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tdni" class="java.lang.String"/>
+	<field name="tRes" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="86" splitType="Stretch">
+			<image>
+				<reportElement x="-38" y="0" width="219" height="86" uuid="ff154e06-e216-4637-9b78-64878f0d5ded"/>
+				<imageExpression><![CDATA[$P{pathImagen}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="101" y="0" width="394" height="20" uuid="5a5a45d7-fefa-4897-b53f-5326637d1630"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EXPEDIENTE Nº "+$F{numeroExpediente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="101" y="20" width="394" height="20" uuid="fa4957a4-8720-4e4e-b5d0-ba00bd1b9feb"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["AREA PRESUPUESTARIA Nº "+$F{areaPresupuestaria}+"-"+$F{subArea}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="2" width="555" height="20" uuid="d90aee81-1a43-4c82-8617-356b3daccecd"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CONTRATO DE LOCACION DE OBRA Nº "+$F{id}+"-2016"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="694" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="495" height="694" uuid="d030b701-4a52-446b-9866-ab03d0defa84"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font isBold="false" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Entre la UNIVERSIDAD NACIONAL DE RIO CUARTO, representada en este acto por la Directora General de Administración Cra. MARIA DE LOS ÁNGELES ARGUELLO DNI 20.700.293, en adelante EL CONTRATANTE, por una parte y <b>"+$F{apellido}+" "+$F{nombre}+" ("+$F{tdni}+" Nº "+$F{documento}+")</b> en adelante el CONTRATISTA por la otra , se conviene en celebrar el presente CONTRATO DE LOCACION DE OBRA, conforme con la "+ $F{tRes}+" Nº "+$F{numeroResolucion0}+"/"+$F{numeroResolucion1}+" de fecha "+$F{fechaResolucion}+ ", quedando sujeto a las siguientes cláusulas: "+
+"<br><b>PRIMERA:</b> EL CONTRATANTE contrata al CONTRATISTA, y este acepta el contrato para TAREAS: "+$F{tipoTarea}+", EN "+$F{lugarTarea}+".-"+
+"<br><b>SEGUNDA:</b> EL CONTRATISTA realizará las tareas mencionadas en la cláusula anterior, de acuerdo a lo convenido en la "+$F{tRes}+".- EN EL PERIODO COMPRENDIDO entre el <b>"+ $F{fechaDesde}+" y el "+$F{fechaHasta}+"."+
+"<br></b><b> TERCERA:</b> El responsable del AREA CITADA elevará mensualmente a la Dirección de Contabilidad certificación donde constará el trabajo realizado por el CONTRATISTA durante el mes correspondiente."+
+"<br><b>CUARTA:</b> EL CONTRATANTE abonará al CONTRATISTA la suma de <b>"+ $P{monedaPlural}+": "+$F{pesosLetra}+" ("+$P{monedaSimbolo}+$F{pesosNumero}+")</b> y viáticos y pasajes por la suma de <b>"+$P{monedaPlural}+": "+$F{pesosLetraViatico}+" ("+$P{monedaSimbolo}+$F{pesosNumeroViatico}+")</b>  los que serán abonados de acuerdo a certificación y no será pasible de retención alguna de aportes jubilatorios o de obra social por no existir relación de dependencia entre el CONTRATANTE y el CONTRATISTA y solamente será sujeto a la retención impositiva que corresponda."+
+"<br><b>QUINTA:</b> El presente convenio quedará resuelto por las siguientes razones: a) por incumplimiento del objeto por el que se conviene; b) por decisión unilateral de las partes, previo acuerdo de la contraparte, y c) por incumplimiento de las partes de sus obligaciones emergentes de este convenio."+
+"<br><b>SEXTA:</b> Para el supuesto que la resolución del contrato sea por la causa prevista en el apartado b) de la cláusula precedente, el contratista renuncia expresamente a reclamar indemnización alguna, salvo el derecho a percibir el pago por los trabajos realmente efectuados, debidamente certificados."+
+"<br><b>SEPTIMA:</b> Las partes se reservan el derecho a reclamar los daños y/o perjuicios que le ocasionen cuando la resolución del contrato devenga del incumplimiento de las obligaciones contraídas previstas en el apartado c) de la cláusula quinta, salvo que el incumplimiento se origine por caso fortuito o de fuerza mayor."+
+"<br><b>OCTAVA:</b> El CONTRATISTA manifiesta expresamente que toma a su exclusivo cargo y en consecuencia exime y libera al CONTRATANTE de toda responsabilidad que se originase con motivo del cumplimiento de sus obligaciones, referido a personal que toma a su cargo como a él, en cuanto a contrato de seguro, aportes adicionales, haberes y demás cargas sociales y muy especialmente de aquellas situaciones que encuadrarían en la Ley de Accidentes de Trabajo."+
+"<br><b>NOVENA:</b> A los fines del presente contrato EL CONTRATANTE fija domicilio en la Ruta Nacional Nro. 36 km 601 y EL CONTRATISTA en "+$F{direccion}+"."+
+"<br><b>DECIMA:</b> A los efectos legales del presente contrato las partes se someten a la jurisdicción de los Tribunales Federales de Río Cuarto, renunciando a todo otro fuero especial que pudiere corresponderles."+
+"<br><b>UNDECIMA:</b> El interesado deberá dar cumplimiento a lo requerido por la normativa vigente en lo que se refiere a la inscripción en la Dirección General Impositiva (CUIT), y emisión de los comprobantes requeridos (Factura o Recibo)."+
+"En prueba de conformidad se firman, previa lectura y ratificación, cuatro ejemplares de un mismo tenor y a un solo efecto, en la ciudad de Rio Cuarto el "+$F{fechaContrato}+"."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
